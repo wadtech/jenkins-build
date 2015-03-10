@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Build Status</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <h1><%= @result[:title] %></h1>
+    <p class="totals"><%= @result[:result_string] %></p>
+
+    <table class="table" id="results">
+    <tr class="no-sort table-headings"><th>Job</th><th>Build Number</th><th>Status</th></tr>
+    <% @result[:jobs].each do |job| %>
+      <tr class="row">
+        <td><%= job[:job_name] %></td><td><%= job[:build_no] %></td><td class="<%= job[:klass] %>"><%= job[:build_status] %></td>
+      </tr>
+    <% end %>
+    </table>
+    <script type="text/javascript" src="/tablesort.min.js"></script>
+    <script type="text/javascript">new Tablesort(document.getElementById('results'));</script>
+  </body>
+</html>

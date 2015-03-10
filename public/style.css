@@ -1,0 +1,47 @@
+html {
+  background-color: #EEE;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  text-align:center;
+}
+
+.green {
+  color: green;
+}
+.blue {
+  color: blue;
+}
+.yellow {
+  color: yellow;
+}
+.red {
+  color: red;
+}
+.unknown {
+  color: gray;
+}
+
+.totals {
+  text-align:center;
+  font-weight:bold;
+  font-size: 1.3em;
+}
+
+.table {
+  width: 100%;
+  padding: 2em;
+}
+
+.row:hover {
+  background-color: #aaa;
+}
+
+tr:nth-child(2n) {
+  background-color: #DDD;
+}
+
+.table-headings {
+  cursor: pointer;
+}
