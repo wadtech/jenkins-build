@@ -2,6 +2,7 @@
   <head>
     <title>Build Status</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/font-awesome.min.css">
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
@@ -9,7 +10,7 @@
     <p class="totals"><%= @result[:result_string] %></p>
 
     <table class="table" id="results">
-    <tr class="no-sort table-headings"><th>Job</th><th>Build Number</th><th>Status</th></tr>
+    <tr class="no-sort table-headings"><th>Job <i class="fa fa-arrows-v"></i></th><th>Build Number <i class="fa fa-arrows-v"></i></th><th>Status <i class="fa fa-arrows-v"></i></th></tr>
     <% @result[:jobs].each do |job| %>
       <tr class="row">
         <td><%= job[:job_name] %></td><td><%= job[:build_no] %></td><td class="<%= job[:klass] %>"><%= job[:build_status] %></td>

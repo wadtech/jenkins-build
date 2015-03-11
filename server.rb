@@ -16,7 +16,6 @@ get '/' do
     unknown: 0
   }
 
-
   open(
     "#{ENV['JENKINS_HOST']}/rssLatest",
     http_basic_authentication: [ENV['JENKINS_USER'], ENV['JENKINS_KEY']],
@@ -61,13 +60,11 @@ get '/' do
       }
     end
 
-
     @result[:result_string] = [
       "Stable: #{@result[:stable]}",
       "Broken: #{@result[:broken]} (#{@result[:unstable]} Unstable)",
       "Unknown: #{@result[:unknown]}"
     ].join(', ')
-
 
     erb :main
   end
