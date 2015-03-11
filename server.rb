@@ -6,7 +6,6 @@ get '/' do
   required = %w(JENKINS_HOST JENKINS_USER JENKINS_KEY)
   required.each do |req|
     raise RuntimeError.new("Required ENV variables: #{required}") if ENV[req].nil?
-    return
   end
 
   @result = {
@@ -17,10 +16,13 @@ get '/' do
     unknown: 0
   }
 
+
   open(
     "#{ENV['JENKINS_HOST']}/rssLatest",
-    http_basic_authentication: [ENV['JENKINS_USER'], ENV['JENKINS_KEY']]
+    http_basic_authentication: [ENV['JENKINS_USER'], ENV['JENKINS_KEY']],
+    read_timeout: 2
   ) do |rss|
+
     feed = RSS::Parser.parse(rss)
 
     @result[:title] = 'Latest Build Statuses'
@@ -59,17 +61,19 @@ get '/' do
       }
     end
 
+
     @result[:result_string] = [
       "Stable: #{@result[:stable]}",
       "Broken: #{@result[:broken]} (#{@result[:unstable]} Unstable)",
       "Unknown: #{@result[:unknown]}"
     ].join(', ')
 
+
     erb :main
   end
 end
 
 error do
-  @message = env['sinatra.error'].message
+  @message = ENV['sinatra.error'].message
   erb :error
 end
